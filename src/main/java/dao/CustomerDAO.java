@@ -50,4 +50,12 @@ public class CustomerDAO {
         stmt.setInt(5, c.getAccountNumber());
         stmt.executeUpdate();
     }
+
+    public class BillingService {
+        public  double calculateBill(int unitsConsumed) {
+            double ratePerUnit = 10.0; // Example rate per unit
+            return unitsConsumed * ratePerUnit;
+        }
+    }
+
 }
