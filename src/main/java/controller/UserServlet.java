@@ -4,7 +4,6 @@ import dao.UserDAO;
 import model.User;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,28 +19,10 @@ public class UserServlet extends HttpServlet {
         userDAO = new UserDAO();
     }
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UserServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UserServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
-        processRequest(request, response);
     }
 
     @Override
@@ -68,8 +49,6 @@ public class UserServlet extends HttpServlet {
             default:
                 listUsers(request, response);
         }
-
-        processRequest(request, response);
     }
 
     private void listUsers(HttpServletRequest request, HttpServletResponse response)
@@ -129,10 +108,4 @@ public class UserServlet extends HttpServlet {
         userDAO.deleteUser(id);
         response.sendRedirect("list");
     }
-
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }
