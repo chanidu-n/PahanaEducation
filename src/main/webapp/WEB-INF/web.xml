@@ -20,10 +20,12 @@
     <servlet-name>CustomerServlet</servlet-name>
     <servlet-class>controller.CustomerServlet</servlet-class>
   </servlet>
+
   <servlet-mapping>
     <servlet-name>CustomerServlet</servlet-name>
     <url-pattern>/addCustomer</url-pattern>
   </servlet-mapping>
+
 
   <!-- Item Controller -->
   <servlet>

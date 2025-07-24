@@ -9,9 +9,7 @@ public class CustomerDAO {
 
     public void addCustomer(Customer c) throws Exception {
         Connection conn = DBUtil.getConnection();
-        PreparedStatement stmt = conn.prepareStatement(
-                "INSERT INTO customers VALUES (?, ?, ?, ?, ?)"
-        );
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO customers VALUES (?, ?, ?, ?, ?)");
         stmt.setInt(1, c.getAccountNumber());
         stmt.setString(2, c.getName());
         stmt.setString(3, c.getAddress());
@@ -51,11 +49,11 @@ public class CustomerDAO {
         stmt.executeUpdate();
     }
 
-    public class BillingService {
-        public  double calculateBill(int unitsConsumed) {
-            double ratePerUnit = 10.0; // Example rate per unit
-            return unitsConsumed * ratePerUnit;
-        }
-    }
+//    public class BillingService {
+//        public  double calculateBill(int unitsConsumed) {
+//            double ratePerUnit = 10.0; // Example rate per unit
+//            return unitsConsumed * ratePerUnit;
+//        }
+//    }
 
 }

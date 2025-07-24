@@ -15,7 +15,7 @@ public class ItemServlet extends HttpServlet {
             item.setPrice(Double.parseDouble(req.getParameter("price")));
 
             new ItemDAO().addItem(item);
-            res.sendRedirect("forms/viewItems.jsp");
+            res.sendRedirect("/forms/viewItems.jsp");
         } catch (Exception e) {
             e.printStackTrace();
         }
