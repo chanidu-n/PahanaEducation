@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class DBUtil {
 
-    private static String jdbcURL = "jdbc:mysql://localhost:3306/pahanadb";
+    private static String jdbcURL = "jdbc:mysql://localhost:3306/pahana_edu";
     private static String jdbcUsername = "root";
     private static String jdbcPassword = "root";
 
