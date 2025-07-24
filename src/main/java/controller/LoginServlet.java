@@ -1,45 +1,28 @@
 package controller;
 
-import java.io.IOException;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import dao.UserDAO;
 import model.User;
 
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.IOException;
+
 public class LoginServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-        dispatcher.forward(request, response);
-    }
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
-        RequestDispatcher rd;
-        User users = new User();
-        users.setUsername(username);
-        users.setPasscode(password);
-
-        HttpSession session = request.getSession();
-        session.setAttribute("username", username);
-
-        if (users.loginUser(username, password)) {
-            session.setAttribute("users", users);
-            rd = request.getRequestDispatcher("./forms/loginsuccess.jsp");
-            rd.forward(request, response);
+        UserDAO dao = new UserDAO();
+        if (dao.validate(user)) {
+            req.getSession().setAttribute("username", username);
+            res.sendRedirect("dashboard.jsp");
         } else {
-            rd = request.getRequestDispatcher("index.jsp");
-            rd.forward(request, response);
+            req.setAttribute("error", "Invalid credentials");
+            req.getRequestDispatcher("login.jsp").forward(req, res);
         }
     }
 }
