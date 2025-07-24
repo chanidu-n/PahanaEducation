@@ -9,8 +9,7 @@
 <div align="center">
     <h1>User Login</h1>
 
-    <form action="${pageContext.request.contextPath}/login" method="post">
-        <table>
+    <form action="login" method="post">        <table>
             <tr>
                 <td>Username:</td>
                 <td><input type="text" name="username" required/></td>

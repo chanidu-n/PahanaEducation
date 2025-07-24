@@ -15,9 +15,14 @@ public class ItemServlet extends HttpServlet {
             item.setPrice(Double.parseDouble(req.getParameter("price")));
 
             new ItemDAO().addItem(item);
-            res.sendRedirect("viewItems.jsp");
+            res.sendRedirect("forms/viewItems.jsp");
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/forms/addItem.jsp");
+        dispatcher.forward(req, res);
     }
 }

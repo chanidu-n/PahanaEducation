@@ -30,9 +30,10 @@
     <servlet-name>ItemServlet</servlet-name>
     <servlet-class>controller.ItemServlet</servlet-class>
   </servlet>
+
   <servlet-mapping>
     <servlet-name>ItemServlet</servlet-name>
-    <url-pattern>/addItem</url-pattern>
+    <url-pattern>/forms/addItem</url-pattern>
   </servlet-mapping>
 
   <!-- Session Timeout -->

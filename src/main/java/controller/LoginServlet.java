@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
         UserDAO dao = new UserDAO();
         if (dao.validate(user)) {
             req.getSession().setAttribute("username", username);
-            res.sendRedirect("dashboard.jsp");
+            res.sendRedirect("forms/dashboard.jsp");
         } else {
             req.setAttribute("error", "Invalid credentials");
             req.getRequestDispatcher("login.jsp").forward(req, res);

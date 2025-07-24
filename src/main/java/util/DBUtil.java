@@ -5,18 +5,17 @@ import java.sql.DriverManager;
 
 public class DBUtil {
 
-    private static String jdbcURL = "jdbc:mysql://localhost:3306/pahana_edu";
+    private static String jdbcURL = "jdbc:mysql://localhost:3306/pahana_edu?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
     private static String jdbcUsername = "root";
     private static String jdbcPassword = "root";
 
     public static Connection getConnection() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             return DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
-
 }

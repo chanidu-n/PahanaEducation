@@ -18,7 +18,7 @@ public class CustomerServlet extends HttpServlet {
             c.setUnitsConsumed(Integer.parseInt(req.getParameter("unitsConsumed")));
 
             new CustomerDAO().addCustomer(c);
-            res.sendRedirect("viewCustomers.jsp");
+            res.sendRedirect("forms/viewCustomers.jsp");
         } catch (Exception e) {
             e.printStackTrace();
         }
