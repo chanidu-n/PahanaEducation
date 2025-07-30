@@ -20,9 +20,5 @@ public class ItemServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/forms/addItem.jsp");
-        dispatcher.forward(req, res);
-    }
+
 }
