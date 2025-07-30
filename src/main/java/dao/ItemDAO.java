@@ -7,6 +7,7 @@ import util.DBUtil;
 
 public class ItemDAO {
     public void addItem(Item item) throws Exception {
+        System.out.println("item works");
         Connection conn = DBUtil.getConnection();
         PreparedStatement stmt = conn.prepareStatement("INSERT INTO items (name, price) VALUES (?, ?)");
         stmt.setString(1, item.getName());

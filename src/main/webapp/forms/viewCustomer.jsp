@@ -24,7 +24,7 @@
         <td><%= c.getAddress() %></td>
         <td><%= c.getTelephone() %></td>
         <td><%= c.getUnitsConsumed() %></td>
-        <td><a href="bill.jsp?accountNumber=<%= c.getAccountNumber() %>">View Bill</a></td>
+        <!-- <td><a href="bill.jsp?accountNumber=<%= c.getAccountNumber() %>">View Bill</a></td> -->
     </tr>
     <% } %>
 </table>

@@ -12,7 +12,7 @@
 <h1>Welcome <%= session.getAttribute("username") %></h1>
 <ul>
   <li><a href="addCustomer.jsp">Add Customer</a></li>
-  <li><a href="viewCustomers.jsp">View Customers</a></li>
+  <li><a href="viewCustomer.jsp">View Customers</a></li>
   <li><a href="addItem.jsp">Add Item</a></li>
   <li><a href="viewItems.jsp">View Items</a></li>
   <li><a href="help.jsp">Help</a></li>

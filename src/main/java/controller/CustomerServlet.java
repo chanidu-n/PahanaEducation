@@ -10,7 +10,7 @@ import java.io.IOException;
 public class CustomerServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         try {
             int accountNumber = Integer.parseInt(req.getParameter("accountNumber"));
             String name = req.getParameter("name");
@@ -26,10 +26,9 @@ public class CustomerServlet extends HttpServlet {
             customer.setUnitsConsumed(unitsConsumed);
 
             new dao.CustomerDAO().addCustomer(customer);
-            res.sendRedirect("/forms/viewCustomers.jsp");
+            res.sendRedirect(req.getContextPath() + "/forms/viewCustomer.jsp");
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }
