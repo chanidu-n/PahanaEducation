@@ -16,15 +16,31 @@
 <body>
 <h2>Items</h2>
 <table border="1">
-    <tr><th>ID</th><th>Name</th><th>Price</th></tr>
+    <tr><th>ID</th><th>Name</th><th>Price</th><th>Actions</th></tr>
     <% for (Item item : items) { %>
     <tr>
         <td><%= item.getId() %></td>
         <td><%= item.getName() %></td>
         <td>Rs. <%= item.getPrice() %></td>
+        <td>
+            <a href="editItem?action=edit&id=<%= item.getId() %>">Edit</a>
+            |
+            <form style="display:inline;" method="post" action="addItem" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                <input type="hidden" name="action" value="delete">
+                <input type="hidden" name="id" value="<%= item.getId() %>">
+                <input type="submit" value="Delete" style="background:red;color:white;">
+            </form>
+        </td>
     </tr>
     <% } %>
 </table>
+<br>
+<a href="addItem.jsp">Add New Item</a> | 
+<a href="dashboard.jsp">Back to Dashboard</a>
+
+<% if (request.getAttribute("error") != null) { %>
+    <p style="color:red;"><%= request.getAttribute("error") %></p>
+<% } %>
 </body>
 </html>
 
