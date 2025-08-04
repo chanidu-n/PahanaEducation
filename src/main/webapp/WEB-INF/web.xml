@@ -43,6 +43,16 @@
     <url-pattern>/forms/editItem</url-pattern>
   </servlet-mapping>
 
+  <!-- Bill Controller -->
+  <servlet>
+    <servlet-name>BillServlet</servlet-name>
+    <servlet-class>controller.BillServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BillServlet</servlet-name>
+    <url-pattern>/forms/bill</url-pattern>
+  </servlet-mapping>
+
   <!-- Session Timeout -->
   <session-config>
     <session-timeout>30</session-timeout>

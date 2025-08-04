@@ -15,6 +15,8 @@
   <li><a href="viewCustomer.jsp">View Customers</a></li>
   <li><a href="addItem.jsp">Add Item</a></li>
   <li><a href="viewItems.jsp">View Items</a></li>
+  <li><a href="createBill.jsp">Create Bill</a></li>
+  <li><a href="bill?action=list">View All Bills</a></li>
   <li><a href="help.jsp">Help</a></li>
   <li><a href="login.jsp">Logout</a></li>
 </ul>
