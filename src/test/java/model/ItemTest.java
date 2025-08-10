@@ -67,4 +67,4 @@ public class ItemTest extends TestCase {
         item.setPrice(largePrice);
         assertEquals("Should handle large price", largePrice, item.getPrice(), 0.001);
     }
-}
+} 
