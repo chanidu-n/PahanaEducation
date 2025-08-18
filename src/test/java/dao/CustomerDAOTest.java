@@ -89,7 +89,7 @@ public class CustomerDAOTest extends TestCase {
     public void testAddCustomerWithEmptyString() {
         try {
             Customer emptyCustomer = new Customer();
-            emptyCustomer.setAccountNumber(7777);
+            emptyCustomer.setAccountNumber(7);
             emptyCustomer.setName("");
             emptyCustomer.setAddress("");
             emptyCustomer.setTelephone("");

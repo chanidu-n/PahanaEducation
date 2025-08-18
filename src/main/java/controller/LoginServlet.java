@@ -22,7 +22,7 @@ public class LoginServlet extends HttpServlet {
             res.sendRedirect("forms/dashboard.jsp");
         } else {
             req.setAttribute("error", "Invalid credentials");
-            req.getRequestDispatcher("login.jsp").forward(req, res);
+            req.getRequestDispatcher("index.jsp").forward(req, res);
         }
     }
 }
