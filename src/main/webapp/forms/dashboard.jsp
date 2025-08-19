@@ -7,8 +7,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head><title>Dashboard</title></head>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+
 <body>
+
 <h1>Welcome <%= session.getAttribute("username") %></h1>
 <ul>
   <li><a href="addCustomer.jsp">Add Customer</a></li>
@@ -20,6 +25,7 @@
   <li><a href="help.jsp">Help</a></li>
   <li><a href="login.jsp">Logout</a></li>
 </ul>
+
 </body>
 </html>
 

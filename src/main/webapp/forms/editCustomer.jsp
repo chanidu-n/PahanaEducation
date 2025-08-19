@@ -15,7 +15,9 @@
     }
 %>
 <html>
-<head><title>Edit Customer</title></head>
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <title>Edit Customer</title></head>
 <body>
 <h2>Edit Customer</h2>
 <form action="addCustomer" method="post">

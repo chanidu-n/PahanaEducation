@@ -7,7 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head><title>Add Item</title></head>
+<head>
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <title>Add Item</title></head>
 <body>
 <h2>Add New Item</h2>
 <form action="addItem" method="post">

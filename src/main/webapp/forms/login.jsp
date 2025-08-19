@@ -7,7 +7,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head><title>Login</title></head>
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <title>Login</title></head>
 <body>
 <h2>Login</h2>
 <form method="post" action="login">

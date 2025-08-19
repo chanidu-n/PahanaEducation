@@ -13,6 +13,7 @@
 %>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
     <title>Create Bill</title>
     <style>
         table { border-collapse: collapse; width: 100%; }

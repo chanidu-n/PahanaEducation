@@ -15,7 +15,9 @@
     }
 %>
 <html>
-<head><title>Edit Item</title></head>
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <title>Edit Item</title></head>
 <body>
 <h2>Edit Item</h2>
 <form action="addItem" method="post">
