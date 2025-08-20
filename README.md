@@ -1,20 +1,24 @@
-# PahanaEducation
+# PahanaEducation - Bookshop Management System
 
-A Java web application for managing customers and items using JSP, Servlets, and MySQL database.
+A comprehensive Java web application for managing a bookshop's operations including customer management, inventory control, and bill generation using JSP, Servlets, and MySQL database.
 
 ## Features
 
 - **User Authentication**: Secure login system with session management
-- **Customer Management**: Add and view customer information including account details and electricity consumption
-- **Item Management**: Add and view items with pricing information
+- **Customer Management**: Add, view, edit, and delete customer information
+- **Item/Inventory Management**: Complete CRUD operations for bookshop items
+- **Bill Generation**: Create detailed bills with multiple items and automatic calculations
+- **Bill Management**: View all bills and print individual receipts
 - **Dashboard**: User-friendly interface for navigation and system overview
 - **Database Integration**: MySQL database connectivity for data persistence
+- **Responsive Design**: Clean CSS styling for better user experience
 
 ## Tech Stack
 
 - **Backend**: Java Servlets, JSP
-- **Database**: MySQL
+- **Database**: MySQL 8.0+
 - **Build Tool**: Maven
+- **Testing**: JUnit 3.8.1
 - **Server**: Java Web Application (WAR deployment)
 - **IDE**: IntelliJ IDEA
 
@@ -27,29 +31,43 @@ src/
 │   │   ├── controller/          # Servlet controllers
 │   │   │   ├── LoginServlet.java
 │   │   │   ├── CustomerServlet.java
-│   │   │   └── ItemServlet.java
+│   │   │   ├── ItemServlet.java
+│   │   │   └── BillServlet.java
 │   │   ├── dao/                 # Data Access Objects
 │   │   │   ├── UserDAO.java
 │   │   │   ├── CustomerDAO.java
-│   │   │   └── ItemDAO.java
+│   │   │   ├── ItemDAO.java
+│   │   │   └── BillDAO.java
 │   │   ├── model/               # Entity classes
 │   │   │   ├── User.java
 │   │   │   ├── Customer.java
-│   │   │   └── Item.java
+│   │   │   ├── Item.java
+│   │   │   ├── Bill.java
+│   │   │   └── BillItem.java
 │   │   └── util/                # Utility classes
 │   │       └── DBUtil.java
 │   └── webapp/
 │       ├── forms/               # JSP pages
-│       │   ├── login.jsp
 │       │   ├── dashboard.jsp
 │       │   ├── addCustomer.jsp
 │       │   ├── viewCustomer.jsp
+│       │   ├── editCustomer.jsp
 │       │   ├── addItem.jsp
 │       │   ├── viewItems.jsp
+│       │   ├── editItem.jsp
+│       │   ├── createBill.jsp
+│       │   ├── billList.jsp
+│       │   ├── viewBill.jsp
 │       │   └── help.jsp
+│       ├── css/
+│       │   └── style.css        # Application styling
 │       ├── WEB-INF/
 │       │   └── web.xml          # Servlet configuration
 │       └── index.jsp            # Landing page
+└── test/
+    └── java/
+        ├── dao/                 # DAO unit tests
+        └── model/               # Model unit tests
 ```
 
 ## Prerequisites
@@ -59,51 +77,12 @@ src/
 - MySQL 8.0+
 - Apache Tomcat 9.0+ or similar servlet container
 
-## Database Setup
-
-1. **Create MySQL Database:**
-   ```sql
-   CREATE DATABASE pahana_edu;
-   USE pahana_edu;
-   ```
-
-2. **Create Tables:**
-   ```sql
-   -- Users table
-   CREATE TABLE users (
-       id INT AUTO_INCREMENT PRIMARY KEY,
-       username VARCHAR(50) UNIQUE NOT NULL,
-       password VARCHAR(100) NOT NULL
-   );
-
-   -- Customers table
-   CREATE TABLE customers (
-       account_number INT PRIMARY KEY,
-       name VARCHAR(100) NOT NULL,
-       address VARCHAR(200),
-       telephone VARCHAR(20),
-       units_consumed INT DEFAULT 0
-   );
-
-   -- Items table
-   CREATE TABLE items (
-       id INT AUTO_INCREMENT PRIMARY KEY,
-       name VARCHAR(100) NOT NULL,
-       price DECIMAL(10,2) NOT NULL
-   );
-   ```
-
-3. **Insert Sample Data:**
-   ```sql
-   -- Sample user
-   INSERT INTO users (username, password) VALUES ('admin', 'admin123');
-   ```
 
 ## Installation & Setup
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/chanidu-n/PahanaEducation.git
+   git clone <repository-url>
    cd PahanaEducation
    ```
 
@@ -112,8 +91,8 @@ src/
    Update the database credentials in [`src/main/java/util/DBUtil.java`](src/main/java/util/DBUtil.java):
    ```java
    private static String jdbcURL = "jdbc:mysql://localhost:3306/pahana_edu?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
-   private static String jdbcUsername = "your_username";
-   private static String jdbcPassword = "your_password";
+   private static String jdbcUsername = "root";
+   private static String jdbcPassword = "root";
    ```
 
 3. **Build the project:**
@@ -121,12 +100,17 @@ src/
    mvn clean compile
    ```
 
-4. **Package the application:**
+4. **Run tests:**
+   ```bash
+   mvn test
+   ```
+
+5. **Package the application:**
    ```bash
    mvn package
    ```
 
-5. **Deploy to Tomcat:**
+6. **Deploy to Tomcat:**
    - Copy the generated `target/PahanaEducation.war` file to your Tomcat `webapps` directory
    - Start Tomcat server
    - Access the application at `http://localhost:8080/PahanaEducation`
@@ -135,23 +119,53 @@ src/
 
 ### Login
 1. Navigate to `http://localhost:8080/PahanaEducation`
-2. Use the credentials: `admin` / `admin123` (or create your own in the database)
+2. Use the credentials: `Admin` / `1234`
 
 ### Customer Management
 - **Add Customer**: Navigate to "Add Customer" from the dashboard
 - **View Customers**: Access the customer list to see all registered customers
+- **Edit Customer**: Click "Edit" next to any customer in the customer list
+- **Delete Customer**: Click "Delete" to remove a customer (with confirmation)
 
 ### Item Management
 - **Add Item**: Add new items with name and price
 - **View Items**: Browse all available items
+- **Edit Item**: Modify existing item details
+- **Delete Item**: Remove items from inventory
+
+### Bill Management
+- **Create Bill**: 
+  1. Select "Create Bill" from dashboard
+  2. Enter customer account number to load customer details
+  3. Select items and quantities
+  4. System automatically calculates subtotals and total
+  5. Submit to generate the bill
+- **View Bills**: Access list of all generated bills
+- **Print Bills**: View and print individual bill receipts
 
 ## API Endpoints
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
 | `/login` | POST | User authentication |
-| `/forms/addCustomer` | POST | Add new customer |
-| `/forms/addItem` | POST | Add new item |
+| `/forms/addCustomer` | POST | Add/Update/Delete customer |
+| `/forms/editCustomer` | GET | Get customer for editing |
+| `/forms/addItem` | POST | Add/Update/Delete item |
+| `/forms/editItem` | GET | Get item for editing |
+| `/forms/bill` | POST | Create bill, Get customer details |
+| `/forms/bill` | GET | View bill, List all bills |
+
+## Testing
+
+The project includes comprehensive unit tests:
+
+- **Model Tests**: [`UserTest`](src/test/java/model/UserTest.java), [`ItemTest`](src/test/java/model/ItemTest.java), [`CustomerTest`](src/test/java/model/CustomerTest.java)
+- **DAO Tests**: [`UserDAOTest`](src/test/java/dao/UserDAOTest.java), [`ItemDAOTest`](src/test/java/dao/ItemDAOTest.java), [`CustomerDAOTest`](src/test/java/dao/CustomerDAOTest.java)
+
+Run tests with:
+```bash
+mvn test
+```
 
 ## Dependencies
 
@@ -160,6 +174,30 @@ src/
 - **jstl** (1.2): JSP Standard Tag Library
 - **junit** (3.8.1): Testing framework
 
+## Features in Detail
+
+### Customer Management
+- Account number-based customer identification
+- Complete customer information storage
+- Units consumed tracking for utility billing
+
+### Inventory Management
+- Item CRUD operations
+- Price management
+- Stock tracking capabilities
+
+### Billing System
+- Multi-item bill generation
+- Automatic calculation of subtotals and totals
+- Customer information integration
+- Printable bill format
+- Bill history and tracking
+
+### Security
+- Session-based authentication
+- Protected routes requiring login
+- Session timeout configuration
+
 ## Contributing
 
 1. Fork the repository
@@ -167,16 +205,6 @@ src/
 3. Commit your changes (`git commit -am 'Add new feature'`)
 4. Push to the branch (`git push origin feature/new-feature`)
 5. Create a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Contact
-
-**Developer**: Chanidu Neerada  
-**Project**: PahanaEducation  
-**Repository**: [https://github.com/chanidu-n/PahanaEducation](https://github.com/chanidu-n/PahanaEducation)
 
 ## Troubleshooting
 
@@ -195,8 +223,22 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
    - Ensure form action URLs match servlet mappings
    - Check HTTP method (GET/POST) compatibility
 
+4. **CSS Not Loading**:
+   - Verify CSS file path in JSP pages
+   - Check Tomcat static resource serving
+
 ### Development Tips
 
 - Use IDE debugger to trace servlet execution
 - Check Tomcat logs for detailed error messages
-- Verify database connections in [`DBUtil.getConnection()`](src/main/java/util/DBUtil.java)
+- Verify database connections using [`DBUtil.getConnection()`](src/main/java/util/DBUtil.java)
+- Test individual DAOs using the provided unit tests
+
+## License
+
+This project is licensed under the MIT License.
+
+## Contact
+
+**Developer**: Chanidu Neerada  
+**Project**: PahanaEducation Bookshop Management System
