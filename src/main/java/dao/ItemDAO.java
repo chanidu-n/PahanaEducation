@@ -31,8 +31,35 @@ public class ItemDAO {
         return list;
     }
 
+    public Item getItemById(int id) throws Exception {
+        Connection conn = DBUtil.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("SELECT * FROM items WHERE id = ?");
+        stmt.setInt(1, id);
+        ResultSet rs = stmt.executeQuery();
+        
+        if (rs.next()) {
+            Item item = new Item();
+            item.setId(rs.getInt("id"));
+            item.setName(rs.getString("name"));
+            item.setPrice(rs.getDouble("price"));
+            return item;
+        }
+        return null;
+    }
+
+    public void updateItem(Item item) throws Exception {
+        Connection conn = DBUtil.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(
+            "UPDATE items SET name=?, price=? WHERE id=?"
+        );
+        stmt.setString(1, item.getName());
+        stmt.setDouble(2, item.getPrice());
+        stmt.setInt(3, item.getId());
+        stmt.executeUpdate();
+    }
+
     public void deleteItem(int id) throws Exception {
-        Connection conn =DBUtil.getConnection();
+        Connection conn = DBUtil.getConnection();
         PreparedStatement stmt = conn.prepareStatement("DELETE FROM items WHERE id = ?");
         stmt.setInt(1, id);
         stmt.executeUpdate();

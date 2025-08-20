@@ -24,16 +24,33 @@
     <servlet-name>CustomerServlet</servlet-name>
     <url-pattern>/forms/addCustomer</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CustomerServlet</servlet-name>
+    <url-pattern>/forms/editCustomer</url-pattern>
+  </servlet-mapping>
 
   <!-- Item Controller -->
   <servlet>
     <servlet-name>ItemServlet</servlet-name>
     <servlet-class>controller.ItemServlet</servlet-class>
   </servlet>
-
   <servlet-mapping>
     <servlet-name>ItemServlet</servlet-name>
     <url-pattern>/forms/addItem</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ItemServlet</servlet-name>
+    <url-pattern>/forms/editItem</url-pattern>
+  </servlet-mapping>
+
+  <!-- Bill Controller -->
+  <servlet>
+    <servlet-name>BillServlet</servlet-name>
+    <servlet-class>controller.BillServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BillServlet</servlet-name>
+    <url-pattern>/forms/bill</url-pattern>
   </servlet-mapping>
 
   <!-- Session Timeout -->
